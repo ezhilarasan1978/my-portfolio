@@ -1,10 +1,9 @@
+// app/page.tsx
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-  CardDescription,
-  CardFooter
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -13,35 +12,44 @@ import Image from "next/image"
 
 export default function Home() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 space-y-8 bg-gradient-to-b from-gray-50 to-white">
+    <div className="max-w-6xl mx-auto px-4 py-12 space-y-12 bg-gradient-to-br from-gray-50 to-blue-50/30">
       {/* Hero Section */}
-      <section className="text-center">
-        <div className="relative inline-block">
-          <Avatar className="w-32 h-32 mx-auto mb-6 border-4 border-blue-600/20 shadow-lg">
+      <section className="text-center relative">
+        <div className="relative inline-block group">
+          <Avatar className="w-40 h-40 mx-auto mb-6 border-4 border-white shadow-2xl group-hover:shadow-[0_10px_40px_-10px_rgba(59,130,246,0.5)] transition-shadow duration-300">
             <AvatarImage src="/ez-pic1.jpg" />
-            <AvatarFallback className="text-4xl font-bold bg-blue-100 text-blue-800">ES</AvatarFallback>
+            <AvatarFallback className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white">ES</AvatarFallback>
           </Avatar>
-          <div className="absolute -inset-2 rounded-full bg-blue-600/10 -z-10 animate-pulse-slow"></div>
+          <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-blue-400/20 to-blue-600/20 -z-10 animate-pulse-slow group-hover:opacity-80 transition-opacity"></div>
         </div>
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-2">Ezhilarasan S</h1>
-        <h2 className="text-3xl mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+        
+        <h1 className="text-6xl font-extrabold text-gray-900 mb-3">
+          <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+            Ezhilarasan S
+          </span>
+        </h1>
+        <h2 className="text-3xl mb-6 bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
           Consultant | Full Stack Developer | GIS Specialist
         </h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Full Stack Developer with expertise in GE Smallworld and GIS solutions.
+          Transforming spatial data challenges into elegant software solutions
         </p>
       </section>
 
-      <Separator className="my-8 bg-blue-100" />
+      <Separator className="my-8 bg-gradient-to-r from-blue-400 to-blue-600 h-0.5" />
 
       {/* Education */}
-      <Card className="border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+      <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <CardHeader>
-          <CardTitle className="text-2xl text-gray-800">Education</CardTitle>
+          <CardTitle className="text-2xl text-gray-800">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              Education
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-start space-x-4">
-            <div className="p-3 bg-blue-100/50 rounded-full mt-1 text-blue-600">
+            <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mt-1 text-blue-600 shadow-inner">
               <GraduationCapIcon className="h-6 w-6" />
             </div>
             <div>
@@ -53,218 +61,230 @@ export default function Home() {
       </Card>
 
       {/* Experience */}
-      <Card className="border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-        <CardHeader>
-          <CardTitle className="text-2xl text-gray-800">Experience</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-start space-x-4">
-            <div className="p-3 bg-blue-100/50 rounded-full mt-1 text-blue-600">
-              <BriefcaseIcon className="h-6 w-6" />
+      <div className="space-y-6">
+        <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+          <CardHeader>
+            <CardTitle className="text-2xl text-gray-800">
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Experience
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-start space-x-4">
+              <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mt-1 text-blue-600 shadow-inner">
+                <BriefcaseIcon className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800">Consultant</h3>
+                <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 font-medium">
+                  Redplanet Spatial Solutions • May 2025 - Present
+                </p>
+                <ul className="mt-2 list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Specialized in GE Smallworld GIS implementations</li>
+                  <li>Developed full-stack applications integrating with GIS systems</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800">Consultant</h3>
-              <p className="text-blue-600 font-medium">Redplanet Spatial Solutions • May 2025 - Present</p>
-              <ul className="mt-2 list-disc pl-5 space-y-1 text-gray-600">
-                <li>Specialized in GE Smallworld GIS implementations</li>
-                <li>Developed full-stack applications integrating with GIS systems</li>
-              </ul>
+            
+            <Separator className="bg-gradient-to-r from-blue-200 to-blue-400 h-[1px]" />
+            
+            <div className="flex items-start space-x-4">
+              <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mt-1 text-blue-600 shadow-inner">
+                <BriefcaseIcon className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800">Junior Consultant</h3>
+                <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 font-medium">
+                  Redplanet Spatial Solutions • 2023 - April 2025
+                </p>
+                <ul className="mt-2 list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Built GIS web applications using React and Java</li>
+                  <li>Implemented data migration tools for spatial databases</li>
+                  <li>Optimized database performance for large datasets</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          
-          <Separator className="bg-blue-100" />
-          
-          <div className="flex items-start space-x-4">
-            <div className="p-3 bg-blue-100/50 rounded-full mt-1 text-blue-600">
-              <BriefcaseIcon className="h-6 w-6" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800">Junior Consultant</h3>
-              <p className="text-blue-600 font-medium">Redplanet Spatial Solutions • 2023 - April 2025</p>
-              <ul className="mt-2 list-disc pl-5 space-y-1 text-gray-600">
-                <li>Built GIS web applications using React and Java</li>
-                <li>Implemented data migration tools for spatial databases</li>
-                <li>Optimized database performance for large datasets</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Skills */}
-      <Card className="border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+      <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <CardHeader>
-          <CardTitle className="text-2xl text-gray-800">Skills</CardTitle>
+          <CardTitle className="text-2xl text-gray-800">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              Skills
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <h4 className="font-medium text-gray-700">GE Smallworld Expertise</h4>
-            <div className="flex flex-wrap gap-2">
-              {['Electric Office', 'GSS', 'GSA'].map(skill => (
-                <Badge key={skill} variant="secondary" className="px-3 py-1 bg-blue-100 text-blue-800 hover:bg-blue-200">
-                  {skill}
-                </Badge>
-              ))}
+          {[
+            { 
+              title: "GE Smallworld Expertise", 
+              skills: ['Electric Office', 'GSS', 'GSA'],
+              color: "from-blue-500 to-blue-700"
+            },
+            { 
+              title: "Programming Languages", 
+              skills: ['Magik', 'Java', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Python'],
+              color: "from-purple-500 to-purple-700"
+            },
+            { 
+              title: "Frameworks & Libraries", 
+              skills: ['React.js', 'React Native', 'AngularJS', 'Spring Boot', 'ExpressJS', 'ELK Stack'],
+              color: "from-emerald-500 to-emerald-700"
+            },
+            { 
+              title: "Other Tools", 
+              skills: ['Docker', 'GIT', 'GitHub', 'Unit Testing'],
+              color: "from-amber-500 to-amber-700"
+            }
+          ].map((category, index) => (
+            <div key={index} className="space-y-4">
+              <h4 className="font-medium text-gray-700">
+                <span className={`bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                  {category.title}
+                </span>
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map(skill => (
+                  <Badge 
+                    key={skill} 
+                    className={`px-3 py-1 bg-gradient-to-br ${category.color} text-white hover:shadow-md transition-shadow`}
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-medium text-gray-700">Programming Languages</h4>
-            <div className="flex flex-wrap gap-2">
-              {['Magik', 'Java', 'JavaScript', 'SQL', 'HTML', 'CSS', 'python'].map(lang => (
-                <Badge key={lang} className="px-3 py-1 bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-200">
-                  {lang}
-                </Badge>
-              ))}
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-medium text-gray-700">Frameworks & Libraries</h4>
-            <div className="flex flex-wrap gap-2">
-              {['React.js', 'React Native', 'AngularJS', 'Spring Boot', 'ExpressJS','ELK Stack'].map(fw => (
-                <Badge key={fw} className="px-3 py-1 bg-purple-100 text-purple-800 hover:bg-purple-200 border border-purple-200">
-                  {fw}
-                </Badge>
-              ))}
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-medium text-gray-700">Other Tools</h4>
-            <div className="flex flex-wrap gap-2">
-              {['Docker', 'GIT', 'GitHub', 'Unit Testing'].map(tool => (
-                <Badge key={tool} className="px-3 py-1 bg-green-100 text-green-800 hover:bg-green-200 border border-green-200">
-                  {tool}
-                </Badge>
-              ))}
-            </div>
-          </div>
+          ))}
         </CardContent>
       </Card>
 
       {/* Projects */}
-      <Card className="border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+      <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <CardHeader>
-          <CardTitle className="text-2xl text-gray-800">Projects</CardTitle>
+          <CardTitle className="text-2xl text-gray-800">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800">TNB: Non-Technical Loss</h3>
-            <div className="flex flex-wrap gap-2 mt-2 mb-3">
-              <Badge className="bg-blue-100 text-blue-800">GE Smallworld</Badge>
-              <Badge className="bg-gray-100 text-gray-800">Java</Badge>
-              <Badge className="bg-green-100 text-green-800">Data Integration</Badge>
+          {[
+            {
+              title: "TNB: Non-Technical Loss",
+              badges: [
+                { text: "GE Smallworld", color: "bg-blue-500" },
+                { text: "Java", color: "bg-purple-500" },
+                { text: "Data Integration", color: "bg-emerald-500" }
+              ],
+              points: [
+                "Upgraded web services to replace file-based integration for Customer data imports into GE Smallworld Core",
+                "Developed validation and update tool for data integration and quality assurance"
+              ]
+            },
+            {
+              title: "TNB: Advanced Metering",
+              badges: [
+                { text: "Electric Office", color: "bg-blue-500" },
+                { text: "Data Pipelines", color: "bg-purple-500" }
+              ],
+              points: [
+                "Designed reporting and updating systems for customer phase and feeder data",
+                "Ensured seamless integration with GE Smallworld Electric Office"
+              ]
+            },
+            {
+              title: "3D GIS Visualization",
+              badges: [
+                { text: "JavaScript", color: "bg-amber-500" },
+                { text: "WebGL", color: "bg-orange-500" },
+                { text: "Cesium", color: "bg-red-500" },
+                { text: "GIS", color: "bg-blue-500" }
+              ],
+              points: [
+                "Developed prototype for 3D visualization of GIS data on web",
+                "Integrated with Smallworld GIS for data transfer"
+              ]
+            }
+          ].map((project, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">{project.title}</h3>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {project.badges.map((badge, i) => (
+                  <Badge 
+                    key={i} 
+                    className={`${badge.color} text-white hover:shadow-md transition-shadow`}
+                  >
+                    {badge.text}
+                  </Badge>
+                ))}
+              </div>
+              <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                {project.points.map((point, i) => (
+                  <li key={i}>{point}</li>
+                ))}
+              </ul>
+              {index < 2 && <Separator className="bg-gradient-to-r from-blue-200 to-blue-400 h-[1px] my-6" />}
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-600">
-              <li>Upgraded web services to replace file-based integration for Customer data imports into GE Smallworld Core</li>
-              <li>Developed validation and update tool for data integration and quality assurance</li>
-            </ul>
-          </div>
-          
-          <Separator className="bg-blue-100" />
-          
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800">TNB: Advanced Metering</h3>
-            <div className="flex flex-wrap gap-2 mt-2 mb-3">
-              <Badge className="bg-blue-100 text-blue-800">Electric Office</Badge>
-              <Badge className="bg-purple-100 text-purple-800">Data Pipelines</Badge>
-            </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-600">
-              <li>Designed reporting and updating systems for customer phase and feeder data</li>
-              <li>Ensured seamless integration with GE Smallworld Electric Office</li>
-            </ul>
-          </div>
-          
-          <Separator className="bg-blue-100" />
-          
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800">3D GIS Visualization</h3>
-            <div className="flex flex-wrap gap-2 mt-2 mb-3">
-              <Badge className="bg-yellow-100 text-yellow-800">JavaScript</Badge>
-              <Badge className="bg-orange-100 text-orange-800">WebGL</Badge>
-              <Badge className="bg-red-100 text-red-800">Cesium</Badge>
-              <Badge className="bg-blue-100 text-blue-800">GIS</Badge>
-            </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-600">
-              <li>Developed prototype for 3D visualization of GIS data on web</li>
-              <li>Integrated with Smallworld GIS for data transfer</li>
-            </ul>
-          </div>
+          ))}
         </CardContent>
       </Card>
 
       {/* Certifications */}
-      <Card className="border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+      <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <CardHeader>
-          <CardTitle className="text-2xl text-gray-800">Certifications</CardTitle>
+          <CardTitle className="text-2xl text-gray-800">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              Certifications
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-blue-50/50 transition-colors">
-            <div className="relative w-16 h-16 rounded-md overflow-hidden border border-blue-200">
-              <Image 
-                src="/java.png" 
-                alt="Java Full Stack Certification"
-                fill
-                className="object-contain bg-white p-1"
-              />
+          {[
+            {
+              image: "/java.png",
+              title: "Java Full Stack Development",
+              description: "Completed certified course in Java Full Stack Development"
+            },
+            {
+              image: "/sw.png",
+              title: "Smallworld Magik Development",
+              description: "RedPlanet Spatial Solutions"
+            },
+            {
+              image: "/atlas.jpg",
+              title: "ATLAS Training",
+              description: "ATLAS Cliffhanger Solutions"
+            },
+            {
+              image: "/iqgeo.png",
+              title: "IQGeo Training",
+              description: "IQGEO GROUP LIMITED"
+            }
+          ].map((cert, index) => (
+            <div 
+              key={index} 
+              className="flex items-start space-x-4 p-4 rounded-lg hover:bg-blue-50/50 transition-colors group"
+            >
+              <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-gray-200 shadow-sm group-hover:shadow-md transition-shadow">
+                <Image 
+                  src={cert.image} 
+                  alt={`${cert.title} Certification`}
+                  fill
+                  className="object-contain bg-white p-1"
+                />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-800 group-hover:text-blue-700 transition-colors">
+                  {cert.title}
+                </h3>
+                <p className="text-sm text-gray-600">{cert.description}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-medium text-gray-800">Java Full Stack Development</h3>
-              <p className="text-sm text-gray-600">Completed certified course in Java Full Stack Development</p>
-            </div>
-          </div>
-          
-          <Separator className="bg-blue-100" />
-          
-          <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-blue-50/50 transition-colors">
-            <div className="relative w-16 h-16 rounded-md overflow-hidden border border-blue-200">
-              <Image 
-                src="/sw.png" 
-                alt="Smallworld Magik Certification"
-                fill
-                className="object-contain bg-white p-1"
-              />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-gray-800">Smallworld Magik Development</h3>
-              <p className="text-sm text-gray-600">RedPlanet Spatial Solutions</p>
-            </div>
-          </div>
-          
-          <Separator className="bg-blue-100" />
-          
-          <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-blue-50/50 transition-colors">
-            <div className="relative w-16 h-16 rounded-md overflow-hidden border border-blue-200">
-              <Image 
-                src="/atlas.jpg" 
-                alt="ATLAS Training Certification"
-                fill
-                className="object-contain bg-white p-1"
-              />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-gray-800">ATLAS Training</h3>
-              <p className="text-sm text-gray-600">ATLAS Cliffhanger Solutions</p>
-            </div>
-          </div>
-
-          <Separator className="bg-blue-100" />
-          
-          <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-blue-50/50 transition-colors">
-            <div className="relative w-16 h-16 rounded-md overflow-hidden border border-blue-200">
-              <Image 
-                src="/iqgeo.png" 
-                alt="IQGeo Training Certification"
-                fill
-                className="object-contain bg-white p-1"
-              />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-gray-800">IQGeo Training</h3>
-              <p className="text-sm text-gray-600">IQGEO GROUP LIMITED</p>
-            </div>
-          </div>
+          ))}
         </CardContent>
       </Card>
     </div>
