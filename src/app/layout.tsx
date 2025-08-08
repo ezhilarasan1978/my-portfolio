@@ -38,8 +38,8 @@ export default function RootLayout({
                   {[
                     { label: "Home", href: "/" },
                     { label: "About", href: "/about" },
-                    { label: "Contact", href: "/contact" },
-                    { label: "Map", href: "/map" }, // Added Map tab
+                    // { label: "Contact", href: "/contact" },
+                    { label: "Map?👀", href: "/map" }, // Added Map tab
                   ].map((item) => (
                     <li key={item.href}>
                       <Link
