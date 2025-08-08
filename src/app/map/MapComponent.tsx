@@ -1,96 +1,91 @@
-// /app/map/MapComponent.tsx
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { useEffect, useRef } from "react";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
-export default function MapComponent() {
-  const [geoJsonData, setGeoJsonData] = useState(null);
-  const mapRef = useRef(null);
+export default function MapPage() {
+  const mapRef = useRef<HTMLDivElement>(null);
 
-  // Fix default marker icon issue in Leaflet
   useEffect(() => {
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    if (!mapRef.current) return;
 
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+    // Initialize map
+    const map = L.map(mapRef.current).setView([20, 0], 2);
+
+    // Base map layer (OpenStreetMap)
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
+    }).addTo(map);
+
+    // Drag & drop setup
+    const mapContainer = mapRef.current;
+
+    mapContainer.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mapContainer.style.border = "3px dashed #00bfff";
     });
+
+    mapContainer.addEventListener("dragleave", () => {
+      mapContainer.style.border = "none";
+    });
+
+    mapContainer.addEventListener("drop", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mapContainer.style.border = "none";
+
+      if (e.dataTransfer?.files.length) {
+        const file = e.dataTransfer.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          try {
+            const geojson = JSON.parse(event.target?.result as string);
+
+            // Add GeoJSON layer with point styling
+            const layer = L.geoJSON(geojson, {
+              pointToLayer: (feature, latlng) => {
+                return L.circleMarker(latlng, {
+                  radius: 6,
+                  fillColor: "#ff7800",
+                  color: "#000",
+                  weight: 1,
+                  opacity: 1,
+                  fillOpacity: 0.8,
+                });
+              },
+            }).addTo(map);
+
+            // Zoom to layer bounds
+            map.fitBounds(layer.getBounds());
+          } catch (err) {
+            console.error("Invalid GeoJSON file", err);
+          }
+        };
+
+        reader.readAsText(file);
+      }
+    });
+
+    return () => {
+      map.remove();
+    };
   }, []);
 
-  // Handle dropped files
-  const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    const files = event.dataTransfer.files;
-    if (files.length === 0) return;
-
-    const file = files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      try {
-        const json = JSON.parse(e.target?.result as string);
-        setGeoJsonData(json);
-
-        // Zoom to bounds if map and data exist
-        if (mapRef.current && json) {
-          const map = mapRef.current;
-          const geoJsonLayer = L.geoJSON(json);
-          map.fitBounds(geoJsonLayer.getBounds());
-        }
-      } catch (err) {
-        alert("Invalid GeoJSON file");
-      }
-    };
-
-    reader.readAsText(file);
-  };
-
-  const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
-
   return (
-    <div
-      onDrop={onDrop}
-      onDragOver={onDragOver}
-      className="h-[600px] w-full border-4 border-dashed border-gray-300 rounded-lg"
-      style={{ position: "relative" }}
-    >
-      <MapContainer
-        center={[20, 78]}
-        zoom={5}
-        scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%" }}
-        whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {geoJsonData && <GeoJSON data={geoJsonData} />}
-      </MapContainer>
-
+    <div className="flex flex-col items-center justify-center p-4">
+      <h1 className="text-2xl font-bold mb-4">Drag & Drop GeoJSON Viewer</h1>
       <div
-        style={{
-          position: "absolute",
-          top: 10,
-          left: 10,
-          padding: "6px 12px",
-          background: "rgba(255, 255, 255, 0.8)",
-          borderRadius: "6px",
-          fontWeight: "bold",
-          pointerEvents: "none",
-          userSelect: "none",
-          color: "#333",
-        }}
-      >
-        Drag & drop a GeoJSON file here
-      </div>
+        ref={mapRef}
+        className="w-full h-[600px] rounded-lg shadow-lg"
+        style={{ border: "none" }}
+      />
+      <p className="mt-2 text-gray-500 text-sm">
+        Drop a <code>.geojson</code> file anywhere on the map to view it.
+      </p>
     </div>
   );
 }
